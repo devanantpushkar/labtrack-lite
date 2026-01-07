@@ -73,7 +73,7 @@ The backend is containerized using a multi-stage Dockerfile and deployed on Rend
 
 ### Frontend (Vercel)
 The frontend is optimized for production and deployed on Vercel with SPA routing support.
-- **URL**: [labtrack-lite.vercel.app]
+- **URL**: [https://labtrack-lite.vercel.app]
 
 ## 📜 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
