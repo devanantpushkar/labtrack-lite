@@ -1,0 +1,261 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Microsoft (R) Visual C# Compiler",
+        "version": "4.11.0.0",
+        "fileVersion": "4.11.0-3.24554.2 (bc1c3011)",
+        "semanticVersion": "4.11.0",
+        "language": "en-US"
+      },
+      "results": [
+        {
+          "ruleId": "CS1003",
+          "level": "error",
+          "message": "Syntax error, ',' expected",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/DELL/Desktop/aragen/backend/LabTrackApi/Services/ChatbotService.cs",
+                "region": {
+                  "startLine": 353,
+                  "startColumn": 87,
+                  "endLine": 353,
+                  "endColumn": 99
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CS1009",
+          "level": "error",
+          "message": "Unrecognized escape sequence",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/DELL/Desktop/aragen/backend/LabTrackApi/Services/ChatbotService.cs",
+                "region": {
+                  "startLine": 353,
+                  "startColumn": 91,
+                  "endLine": 353,
+                  "endColumn": 93
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CS1012",
+          "level": "error",
+          "message": "Too many characters in character literal",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/DELL/Desktop/aragen/backend/LabTrackApi/Services/ChatbotService.cs",
+                "region": {
+                  "startLine": 353,
+                  "startColumn": 87,
+                  "endLine": 353,
+                  "endColumn": 87
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CS1026",
+          "level": "error",
+          "message": ") expected",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/DELL/Desktop/aragen/backend/LabTrackApi/Services/ChatbotService.cs",
+                "region": {
+                  "startLine": 353,
+                  "startColumn": 99,
+                  "endLine": 353,
+                  "endColumn": 100
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CS1010",
+          "level": "error",
+          "message": "Newline in constant",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/DELL/Desktop/aragen/backend/LabTrackApi/Services/ChatbotService.cs",
+                "region": {
+                  "startLine": 353,
+                  "startColumn": 101,
+                  "endLine": 353,
+                  "endColumn": 101
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CS1003",
+          "level": "error",
+          "message": "Syntax error, ':' expected",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/DELL/Desktop/aragen/backend/LabTrackApi/Services/ChatbotService.cs",
+                "region": {
+                  "startLine": 353,
+                  "startColumn": 129,
+                  "endLine": 353,
+                  "endColumn": 129
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CS1525",
+          "level": "error",
+          "message": "Invalid expression term 'if'",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/DELL/Desktop/aragen/backend/LabTrackApi/Services/ChatbotService.cs",
+                "region": {
+                  "startLine": 353,
+                  "startColumn": 129,
+                  "endLine": 353,
+                  "endColumn": 129
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "CS1002",
+          "level": "error",
+          "message": "; expected",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///C:/Users/DELL/Desktop/aragen/backend/LabTrackApi/Services/ChatbotService.cs",
+                "region": {
+                  "startLine": 353,
+                  "startColumn": 129,
+                  "endLine": 353,
+                  "endColumn": 129
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "rules": {
+        "CS1002": {
+          "id": "CS1002",
+          "defaultLevel": "error",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1002)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry",
+              "NotConfigurable"
+            ]
+          }
+        },
+        "CS1003": {
+          "id": "CS1003",
+          "defaultLevel": "error",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1003)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry",
+              "NotConfigurable"
+            ]
+          }
+        },
+        "CS1009": {
+          "id": "CS1009",
+          "defaultLevel": "error",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1009)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry",
+              "NotConfigurable"
+            ]
+          }
+        },
+        "CS1010": {
+          "id": "CS1010",
+          "defaultLevel": "error",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1010)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry",
+              "NotConfigurable"
+            ]
+          }
+        },
+        "CS1012": {
+          "id": "CS1012",
+          "defaultLevel": "error",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1012)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry",
+              "NotConfigurable"
+            ]
+          }
+        },
+        "CS1026": {
+          "id": "CS1026",
+          "defaultLevel": "error",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1026)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry",
+              "NotConfigurable"
+            ]
+          }
+        },
+        "CS1525": {
+          "id": "CS1525",
+          "defaultLevel": "error",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS1525)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry",
+              "NotConfigurable"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

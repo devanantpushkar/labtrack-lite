@@ -1,0 +1,25 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,87): error CS1003: Syntax error, ',' expected [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,91): error CS1009: Unrecognized escape sequence [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,87): error CS1012: Too many characters in character literal [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,99): error CS1026: ) expected [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,101): error CS1010: Newline in constant [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,129): error CS1003: Syntax error, ':' expected [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,129): error CS1525: Invalid expression term 'if' [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,129): error CS1002: ; expected [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+
+Build FAILED.
+
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,87): error CS1003: Syntax error, ',' expected [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,91): error CS1009: Unrecognized escape sequence [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,87): error CS1012: Too many characters in character literal [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,99): error CS1026: ) expected [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,101): error CS1010: Newline in constant [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,129): error CS1003: Syntax error, ':' expected [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,129): error CS1525: Invalid expression term 'if' [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\Services\ChatbotService.cs(353,129): error CS1002: ; expected [C:\Users\DELL\Desktop\aragen\backend\LabTrackApi\LabTrackApi.csproj]
+    0 Warning(s)
+    8 Error(s)
+
+Time Elapsed 00:00:02.47
