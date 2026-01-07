@@ -1,4 +1,4 @@
-# 🩺 LabTrack Lite
+# LabTrack Lite
 
 **LabTrack Lite** is a production-ready R&D Asset and Ticketing platform designed for modern laboratory environments. It combines high-performance asset tracking with an intelligent ticketing system and a natural language query chatbot.
 
@@ -78,8 +78,4 @@ The frontend is optimized for production and deployed on Vercel with SPA routing
 ## 📜 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Contributors
-- **Anant Pushkar** (@devanantpushkar)
 
----
-*Built for the Aragen Hackathon 2026*
