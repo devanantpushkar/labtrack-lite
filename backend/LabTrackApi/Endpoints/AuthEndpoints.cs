@@ -12,6 +12,7 @@ namespace LabTrackApi.Endpoints
 
             group.MapPost("/register", async (RegisterRequest request, AuthService authService) =>
             {
+                Console.WriteLine($"Registering user: {request.Username}");
                 if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
                 {
                     return Results.BadRequest(new { Message = "Username and password are required" });
@@ -22,13 +23,24 @@ namespace LabTrackApi.Endpoints
                     return Results.BadRequest(new { Message = "Password must be at least 6 characters" });
                 }
 
-                var result = await authService.RegisterAsync(request);
-                if (result == null)
+                try 
                 {
-                    return Results.BadRequest(new { Message = "Username or email already exists" });
-                }
+                    var result = await authService.RegisterAsync(request);
+                    if (result == null)
+                    {
+                        Console.WriteLine($"Registration failed for '{request.Username}': Username or email already exists.");
+                        return Results.BadRequest(new { Message = "Username or email already exists" });
+                    }
 
-                return Results.Ok(result);
+                    Console.WriteLine($"User '{request.Username}' registered successfully.");
+                    return Results.Ok(result);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"CRITICAL ERROR during registration for '{request.Username}': {ex.Message}");
+                    Console.WriteLine(ex.StackTrace);
+                    return Results.Problem("Internal server error during registration.");
+                }
             })
             .RequireRateLimiting("AuthPolicy")
             .WithName("Register")
