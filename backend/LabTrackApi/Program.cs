@@ -11,40 +11,48 @@ using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var rawConnectionString = builder.Configuration.GetConnectionString("PostgreSQL") ?? Environment.GetEnvironmentVariable("DATABASE_URL");
-var pgConnectionString = rawConnectionString;
+var rawConnectionString = (builder.Configuration.GetConnectionString("PostgreSQL") ?? Environment.GetEnvironmentVariable("DATABASE_URL"))?.Trim();
+string? pgConnectionString = null;
 
-if (!string.IsNullOrEmpty(pgConnectionString) && (pgConnectionString.StartsWith("postgres://") || pgConnectionString.StartsWith("postgresql://")))
+if (!string.IsNullOrEmpty(rawConnectionString))
 {
-    try 
+    if (rawConnectionString.StartsWith("postgres://") || rawConnectionString.StartsWith("postgresql://"))
     {
-        Console.WriteLine("Parsing PostgreSQL URI...");
-        var uri = new Uri(pgConnectionString);
-        var host = uri.Host;
-        var port = uri.Port;
-        var database = uri.AbsolutePath.TrimStart('/');
-        var user = uri.UserInfo.Split(':')[0];
-        var password = uri.UserInfo.Split(':').Length > 1 ? uri.UserInfo.Split(':')[1] : "";
-        
-        pgConnectionString = $"Host={host};Port={port};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true";
-        Console.WriteLine("PostgreSQL URI parsed successfully.");
+        try 
+        {
+            Console.WriteLine("Detected PostgreSQL URI. Parsing...");
+            var uri = new Uri(rawConnectionString);
+            var host = uri.Host;
+            var port = uri.Port;
+            var database = uri.AbsolutePath.TrimStart('/');
+            var userInfo = uri.UserInfo.Split(':');
+            var user = userInfo[0];
+            var password = userInfo.Length > 1 ? userInfo[1] : "";
+            
+            pgConnectionString = $"Host={host};Port={port};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+            Console.WriteLine("PostgreSQL URI parsed successfully.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error parsing PostgreSQL URI: {ex.Message}");
+        }
     }
-    catch (Exception ex)
+    else
     {
-        Console.WriteLine($"Error parsing DATABASE_URL URI: {ex.Message}");
-        // If parsing fails, we don't want to pass the postgres:// string to Npgsql
-        pgConnectionString = null; 
+        // Already in ADO.NET format
+        pgConnectionString = rawConnectionString;
     }
 }
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    if (!string.IsNullOrEmpty(pgConnectionString))
+    if (!string.IsNullOrWhiteSpace(pgConnectionString))
     {
         options.UseNpgsql(pgConnectionString);
     }
     else
     {
+        Console.WriteLine("No PostgreSQL connection string found. Falling back to SQLite.");
         options.UseSqlite("Data Source=labtrack.db");
     }
 });
