@@ -14,45 +14,58 @@ var builder = WebApplication.CreateBuilder(args);
 var rawConnectionString = (builder.Configuration.GetConnectionString("PostgreSQL") ?? Environment.GetEnvironmentVariable("DATABASE_URL"))?.Trim();
 string? pgConnectionString = null;
 
-if (!string.IsNullOrEmpty(rawConnectionString))
+if (!string.IsNullOrWhiteSpace(rawConnectionString))
 {
-    if (rawConnectionString.StartsWith("postgres://") || rawConnectionString.StartsWith("postgresql://"))
+    Console.WriteLine($"Database connection string detected (Length: {rawConnectionString.Length})");
+    
+    if (rawConnectionString.StartsWith("postgres://", StringComparison.OrdinalIgnoreCase) || 
+        rawConnectionString.StartsWith("postgresql://", StringComparison.OrdinalIgnoreCase))
     {
         try 
         {
-            Console.WriteLine("Detected PostgreSQL URI. Parsing...");
+            Console.WriteLine("Detected PostgreSQL URI format. Converting to ADO.NET format...");
             var uri = new Uri(rawConnectionString);
             var host = uri.Host;
-            var port = uri.Port;
+            var port = uri.Port > 0 ? uri.Port : 5432;
             var database = uri.AbsolutePath.TrimStart('/');
             var userInfo = uri.UserInfo.Split(':');
             var user = userInfo[0];
             var password = userInfo.Length > 1 ? userInfo[1] : "";
             
             pgConnectionString = $"Host={host};Port={port};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true";
-            Console.WriteLine("PostgreSQL URI parsed successfully.");
+            Console.WriteLine("Successfully converted URI to ADO.NET format.");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Error parsing PostgreSQL URI: {ex.Message}");
+            Console.WriteLine($"CRITICAL ERROR: Failed to parse PostgreSQL URI. {ex.Message}");
         }
     }
     else
     {
-        // Already in ADO.NET format
+        Console.WriteLine("Using connection string as-is (ADO.NET format).");
         pgConnectionString = rawConnectionString;
     }
+}
+else
+{
+    Console.WriteLine("No database connection string found in DATABASE_URL or PostgreSQL ConnectionString.");
 }
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     if (!string.IsNullOrWhiteSpace(pgConnectionString))
     {
+        // One final check: if it still starts with postgres://, npgsql WILL crash.
+        if (pgConnectionString.StartsWith("postgres", StringComparison.OrdinalIgnoreCase))
+        {
+             Console.WriteLine("WARNING: Connection string still starts with 'postgres'. Npgsql will likely fail.");
+        }
+        
         options.UseNpgsql(pgConnectionString);
     }
     else
     {
-        Console.WriteLine("No PostgreSQL connection string found. Falling back to SQLite.");
+        Console.WriteLine("Falling back to SQLite (labtrack.db).");
         options.UseSqlite("Data Source=labtrack.db");
     }
 });
