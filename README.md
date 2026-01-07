@@ -1,47 +1,85 @@
-# LabTrack Lite - R&D Asset & Ticketing Platform
+# 🩺 LabTrack Lite
 
-A lightweight asset and ticket management system built with **ASP.NET Core 8 Minimal API** and **React**.
+**LabTrack Lite** is a production-ready R&D Asset and Ticketing platform designed for modern laboratory environments. It combines high-performance asset tracking with an intelligent ticketing system and a natural language query chatbot.
 
-## Quick Start
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Deployed on Render](https://img.shields.io/badge/Backend-Render-blue)](https://labtrack-api.onrender.com)
+[![Deployed on Vercel](https://img.shields.io/badge/Frontend-Vercel-black)](https://vercel.com)
+
+## ✨ Features
+
+- **📦 Asset Management**: Full lifecycle tracking of laboratory equipment with unique QR codes and status monitoring.
+- **🎟️ Ticketing System**: Streamlined maintenance and issue reporting with controlled status transitions (Open → In Progress → Resolved → Closed).
+- **🤖 NLQ Chatbot**: Query your lab data using natural language. "How many spectrometers are in Lab Room 103?"
+- **🔐 Enterprise Security**:
+  - JWT-based Authentication.
+  - Role-Based Access Control (Admin, Engineer, Technician).
+  - BCrypt password hashing.
+  - API Rate Limiting for brute-force protection.
+- **♿ Accessibility**: WCAG 2.2 AA compliant UI with ARIA support and high-contrast design.
+- **📱 Responsive UI**: Seamless experience across Desktop, Tablet, and Mobile.
+
+## 🛠️ Tech Stack
+
+### Backend
+- **Framework**: .NET 8.0 Minimal APIs
+- **Database**: PostgreSQL (Production), SQLite (Local Development)
+- **ORM**: Entity Framework Core
+- **Security**: JWT, Rate Limiting, CORS Hardening
+- **Containerization**: Docker
+
+### Frontend
+- **Framework**: React 18 with Vite
+- **Icons**: Lucide React
+- **HTTP Client**: Axios
+- **State Management**: React Context API
+- **Styling**: Vanilla CSS (CSS Variables, Glassmorphism)
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- **.NET SDK 8.0**
-- **Node.js** (v18 or later recommended)
+- .NET 8.0 SDK
+- Node.js (v18+)
+- Local PostgreSQL or SQLite
 
-### 1. Start the Backend API
-Navigate to the backend directory and run:
-```bash
-cd backend/LabTrackApi
-dotnet run
-```
-The API serves at: `http://localhost:5000`
-Swagger Documentation: `http://localhost:5000/swagger`
+### Local Installation
 
-### 2. Start the Frontend App
-Open a new terminal, navigate to the frontend directory and run:
-```bash
-cd frontend
-npm install  # (Only needed first time)
-npm run dev
-```
-The Web App serves at: `http://localhost:5173`
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/devanantpushkar/labtrack-lite.git
+   cd labtrack-lite
+   ```
 
-## Demo Credentials
-The system is pre-seeded with the following accounts:
+2. **Backend Setup**:
+   ```bash
+   cd backend/LabTrackApi
+   dotnet run
+   ```
+   *The API will start at `http://localhost:5000`*
 
-| Role      | Username   | Password      | Access Level                    |
-|-----------|------------|---------------|---------------------------------|
-| **Admin** | `admin`    | `admin123`    | Full Access (Users, Assets, Tickets) |
-| **Engineer**| `engineer` | `engineer123` | Manage Assets, View/Comment Tickets |
-| **Technician**| `technician`| `tech123`  | View Assets, Create Tickets     |
+3. **Frontend Setup**:
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+   *The app will start at `http://localhost:5173`*
 
-## Project Structure
-- `backend/LabTrackApi`: ASP.NET Core Web API with SQLite.
-- `frontend`: React + Vite application (Vanilla CSS).
-- `database`: SQL schema and seed data.
+## 🌐 Deployment
 
-## Features
-- **Authentication**: JWT-based login with Role-Based Access Control (RBAC).
-- **Assets**: Track lab equipment with status and categories.
-- **Tickets**: Report issues, track status (Open, InProgress, Resolved).
-- **Dashboard**: Real-time overview of asset and ticket counts.
+### Backend (Render)
+The backend is containerized using a multi-stage Dockerfile and deployed on Render.
+- **URL**: [https://labtrack-api.onrender.com](https://labtrack-api.onrender.com)
+
+### Frontend (Vercel)
+The frontend is optimized for production and deployed on Vercel with SPA routing support.
+- **URL**: [Your Vercel Link Here]
+
+## 📜 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Contributors
+- **Anant Pushkar** (@devanantpushkar)
+
+---
+*Built for the Aragen Hackathon 2026*
