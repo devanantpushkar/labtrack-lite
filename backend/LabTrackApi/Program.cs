@@ -11,13 +11,30 @@ using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var pgConnectionString = builder.Configuration.GetConnectionString("PostgreSQL") ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+var rawConnectionString = builder.Configuration.GetConnectionString("PostgreSQL") ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+var pgConnectionString = rawConnectionString;
 
-if (!string.IsNullOrEmpty(pgConnectionString) && pgConnectionString.StartsWith("postgres://"))
+if (!string.IsNullOrEmpty(pgConnectionString) && (pgConnectionString.StartsWith("postgres://") || pgConnectionString.StartsWith("postgresql://")))
 {
-    var databaseUri = new Uri(pgConnectionString);
-    var userInfo = databaseUri.UserInfo.Split(':');
-    pgConnectionString = $"Host={databaseUri.Host};Port={databaseUri.Port};Database={databaseUri.AbsolutePath.TrimStart('/')};Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true";
+    try 
+    {
+        Console.WriteLine("Parsing PostgreSQL URI...");
+        var uri = new Uri(pgConnectionString);
+        var host = uri.Host;
+        var port = uri.Port;
+        var database = uri.AbsolutePath.TrimStart('/');
+        var user = uri.UserInfo.Split(':')[0];
+        var password = uri.UserInfo.Split(':').Length > 1 ? uri.UserInfo.Split(':')[1] : "";
+        
+        pgConnectionString = $"Host={host};Port={port};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+        Console.WriteLine("PostgreSQL URI parsed successfully.");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error parsing DATABASE_URL URI: {ex.Message}");
+        // If parsing fails, we don't want to pass the postgres:// string to Npgsql
+        pgConnectionString = null; 
+    }
 }
 
 builder.Services.AddDbContext<AppDbContext>(options =>
