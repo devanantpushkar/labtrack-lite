@@ -26,13 +26,13 @@ if (!string.IsNullOrWhiteSpace(rawConnectionString))
             Console.WriteLine("Detected PostgreSQL URI format. Converting to ADO.NET format...");
             var uri = new Uri(rawConnectionString);
             var host = uri.Host;
-            var port = uri.Port > 0 ? uri.Port : 5432;
+            var dbPort = uri.Port > 0 ? uri.Port : 5432;
             var database = uri.AbsolutePath.TrimStart('/');
             var userInfo = uri.UserInfo.Split(':');
             var user = userInfo[0];
             var password = userInfo.Length > 1 ? userInfo[1] : "";
             
-            pgConnectionString = $"Host={host};Port={port};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true";
+            pgConnectionString = $"Host={host};Port={dbPort};Database={database};Username={user};Password={password};SSL Mode=Require;Trust Server Certificate=true";
             Console.WriteLine("Successfully converted URI to ADO.NET format.");
         }
         catch (Exception ex)
